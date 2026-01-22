@@ -1,4 +1,4 @@
-#!/usr/bin/env ts-node
+#!/usr/bin/env node
 import { Command } from "commander";
 import * as fs from "fs";
 import { renderMermaidToTui } from "../src/index";
@@ -11,8 +11,8 @@ program
   .version("0.1.0")
   .argument("[file]", "Mermaid file to render (reads from stdin if not provided)")
   .option("-a, --ascii", "Use ASCII characters only", false)
-  .option("-w, --width <number>", "Max width for rendering", (val) => parseInt(val, 10))
-  .action((file, options) => {
+  .option("-w, --width <number>", "Max width for rendering", (val: string) => parseInt(val, 10))
+  .action((file: string | undefined, options: { ascii: boolean; width?: number }) => {
     let input = "";
     if (file) {
       try {
