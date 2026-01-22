@@ -1,10 +1,11 @@
 # mermaidtui
 
-Deterministic, readable ASCII/Unicode rendering of Mermaid diagrams in your terminal.
+Deterministic, readable Unicode/ASCII rendering of Mermaid diagrams in your terminal.
+By Tariq Shams.
 
-## Why this exists
 
-Sometimes you need to visualize a diagram in a terminal environment (CI logs, TUI apps, or just quick terminal previews) where SVG or heavy headless browsers aren't an option. `mermaidtui` provides a lightweight, pure-TypeScript engine to render simple Mermaid flowcharts as clean ASCII or Unicode boxes.
+Sometimes you need to visualize a diagram in a terminal environment: TUI apps, CI logs or just quick terminal previews, where SVG or heavy headless browsers aren't an option. `mermaidtui` provides a lightweight engine to render simple Mermaid flowcharts as clean Unicode or ASCII boxes.
+Written in TypeScript.
 
 ## Features
 
@@ -13,9 +14,8 @@ Sometimes you need to visualize a diagram in a terminal environment (CI logs, TU
 - **Deterministic Layout**: Grid-based layout engine that prioritizes readability.
 - **Zero Heavy Dependencies**: No Mermaid internals, no Chromium/Puppeteer, no SVG conversion.
 
-## Supported Syntax (v0.1)
-
-目前 v0.1 supports a strict subset of flowcharts:
+## Supported Syntax (v0.0.3)
+Currently v0.0.3 supports a strict subset of flowcharts:
 
 ```mermaid
 flowchart LR
@@ -27,7 +27,7 @@ flowchart LR
 - **Nodes**: Alphanumeric IDs and square labels `A[Label]`.
 - **Edges**: Directed arrows `-->` only.
 
-### Unsupported in v0.1
+### Unsupported in v0.0.3
 
 - Subgraphs
 - Edge labels
@@ -38,7 +38,6 @@ flowchart LR
 ## Installation
 
 ```bash
-# This is currently a production-quality library proposal
 npm install mermaidtui
 ```
 
