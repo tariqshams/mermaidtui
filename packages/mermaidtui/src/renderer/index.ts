@@ -1,5 +1,5 @@
-import { Graph, Node, Edge, RenderOptions, Direction } from "../types";
-import { Grid } from "../grid";
+import { Graph, Node, Edge, RenderOptions, Direction } from "../types.js";
+import { Grid } from "../grid/index.js";
 
 const UNICODE_CHARS = {
   tl: "┌", tr: "┐", bl: "└", br: "┘", h: "─", v: "│",

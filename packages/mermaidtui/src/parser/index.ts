@@ -1,4 +1,4 @@
-import { Graph, Node, Edge, Direction, NodeId } from "../types";
+import { Graph, Node, Edge, Direction, NodeId } from "../types.js";
 
 export class ParseError extends Error {
   constructor(public line: number, message: string, public suggestion?: string) {

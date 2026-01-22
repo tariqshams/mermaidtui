@@ -1,4 +1,4 @@
-import { Graph, Node, NodeId, Direction } from "../types";
+import { Graph, Node, NodeId, Direction } from "../types.js";
 
 const MIN_NODE_WIDTH = 5;
 const NODE_HEIGHT = 3;

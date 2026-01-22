@@ -1,7 +1,7 @@
-import { parseMermaid } from "./parser";
-import { computeLayout } from "./layout";
-import { renderGraph } from "./renderer";
-import { RenderOptions } from "./types";
+import { parseMermaid } from "./parser/index.js";
+import { computeLayout } from "./layout/index.js";
+import { renderGraph } from "./renderer/index.js";
+import { RenderOptions } from "./types.js";
 
 export function renderMermaidToTui(input: string, options: RenderOptions = {}): string {
   try {
@@ -16,7 +16,7 @@ export function renderMermaidToTui(input: string, options: RenderOptions = {}): 
   }
 }
 
-export * from "./types";
-export { parseMermaid } from "./parser";
-export { computeLayout } from "./layout";
-export { renderGraph } from "./renderer";
+export * from "./types.js";
+export { parseMermaid } from "./parser/index.js";
+export { computeLayout } from "./layout/index.js";
+export { renderGraph } from "./renderer/index.js";

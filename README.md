@@ -3,7 +3,6 @@
 Deterministic, readable Unicode/ASCII rendering of Mermaid diagrams in your terminal.
 By Tariq Shams.
 
-## Why this exists
 
 Sometimes you need to visualize a diagram in a terminal environment: TUI apps, CI logs or just quick terminal previews, where SVG or heavy headless browsers aren't an option. `mermaidtui` provides a lightweight engine to render simple Mermaid flowcharts as clean Unicode or ASCII boxes.
 Written in TypeScript.
@@ -15,9 +14,8 @@ Written in TypeScript.
 - **Deterministic Layout**: Grid-based layout engine that prioritizes readability.
 - **Zero Heavy Dependencies**: No Mermaid internals, no Chromium/Puppeteer, no SVG conversion.
 
-## Supported Syntax (v0.0.1)
-
-Currently v0.0.1 supports a strict subset of flowcharts:
+## Supported Syntax (v0.0.2)
+Currently v0.0.2 supports a strict subset of flowcharts:
 
 ```mermaid
 flowchart LR

@@ -1,7 +1,7 @@
 #!/usr/bin/env node
 import { Command } from "commander";
 import * as fs from "fs";
-import { renderMermaidToTui } from "../src/index";
+import { renderMermaidToTui } from "../src/index.js";
 
 const program = new Command();
 

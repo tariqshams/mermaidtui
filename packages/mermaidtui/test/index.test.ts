@@ -1,4 +1,4 @@
-import { renderMermaidToTui } from "../src/index";
+import { renderMermaidToTui } from "../src/index.js";
 
 describe("mermaidtui", () => {
   test("renders a simple LR flowchart", () => {
