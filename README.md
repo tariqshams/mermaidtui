@@ -14,8 +14,8 @@ Written in TypeScript.
 - **Deterministic Layout**: Grid-based layout engine that prioritizes readability.
 - **Zero Heavy Dependencies**: No Mermaid internals, no Chromium/Puppeteer, no SVG conversion.
 
-## Supported Syntax (v0.0.2)
-Currently v0.0.2 supports a strict subset of flowcharts:
+## Supported Syntax (v0.0.3)
+Currently v0.0.3 supports a strict subset of flowcharts:
 
 ```mermaid
 flowchart LR
@@ -27,7 +27,7 @@ flowchart LR
 - **Nodes**: Alphanumeric IDs and square labels `A[Label]`.
 - **Edges**: Directed arrows `-->` only.
 
-### Unsupported in v0.0.1
+### Unsupported in v0.0.3
 
 - Subgraphs
 - Edge labels
