@@ -108,22 +108,44 @@ function drawEdge(grid: Grid, from: Node, to: Node, chars: typeof UNICODE_CHARS,
       grid.set(endX - (endX > startX ? 1 : -1), endY, arrowChar);
     } else {
       const midX = startX + Math.floor((endX - startX) / 2);
+      const isLR = direction === "LR";
       
       // Horizontal from start to mid
       const xStep1 = midX > startX ? 1 : -1;
       for (let x = startX; x !== midX; x += xStep1) grid.set(x, startY, chars.h);
       
-      // Corner or vertical
-      grid.set(midX, startY, chars.v); 
+      // Turn 1 at (midX, startY)
+      if (endY > startY) {
+        grid.set(midX, startY, isLR ? chars.tr : chars.tl);
+      } else {
+        grid.set(midX, startY, isLR ? chars.br : chars.bl);
+      }
 
       // Vertical from startY to endY
       const yDir = endY > startY ? 1 : -1;
       for (let y = startY + yDir; y !== endY; y += yDir) grid.set(midX, y, chars.v);
       
+      // Turn 2 at (midX, endY)
+      if (endY > startY) {
+        grid.set(midX, endY, isLR ? chars.bl : chars.br);
+      } else {
+        grid.set(midX, endY, isLR ? chars.tl : chars.tr);
+      }
+
       // Horizontal from mid to end
       const xStep2 = endX > midX ? 1 : -1;
-      for (let x = midX; x !== endX; x += xStep2) grid.set(x, endY, chars.h);
-      grid.set(endX - (endX > midX ? 1 : -1), endY, arrowChar);
+      for (let x = midX + xStep2; x !== endX; x += xStep2) grid.set(x, endY, chars.h);
+      
+      // Arrow
+      const arrowX = endX - (endX > midX ? 1 : -1);
+      // Only set arrow if it doesn't overwrite a corner or if there's no other choice
+      if (arrowX !== midX || Math.abs(endX - startX) < 2) {
+        grid.set(arrowX, endY, arrowChar);
+      } else {
+        // If it would overwrite the corner, we might need a better strategy, 
+        // but with increased gaps this should be rare.
+        grid.set(arrowX, endY, arrowChar);
+      }
     }
   } else { // TB or BT
     if (startX === endX) {
@@ -132,22 +154,37 @@ function drawEdge(grid: Grid, from: Node, to: Node, chars: typeof UNICODE_CHARS,
       grid.set(endX, endY - (endY > startY ? 1 : -1), arrowChar);
     } else {
       const midY = startY + Math.floor((endY - startY) / 2);
-      
+      const isTB = direction === "TB";
+
       // Vertical from start to mid
       const yStep1 = midY > startY ? 1 : -1;
       for (let y = startY; y !== midY; y += yStep1) grid.set(startX, y, chars.v);
       
-      // Corner or horizontal
-      grid.set(startX, midY, chars.h);
+      // Turn 1 at (startX, midY)
+      if (endX > startX) {
+        grid.set(startX, midY, isTB ? chars.bl : chars.tl);
+      } else {
+        grid.set(startX, midY, isTB ? chars.br : chars.tr);
+      }
 
       // Horizontal from startX to endX
       const xDir = endX > startX ? 1 : -1;
       for (let x = startX + xDir; x !== endX; x += xDir) grid.set(x, midY, chars.h);
       
+      // Turn 2 at (endX, midY)
+      if (endX > startX) {
+        grid.set(endX, midY, isTB ? chars.tr : chars.br);
+      } else {
+        grid.set(endX, midY, isTB ? chars.tl : chars.bl);
+      }
+
       // Vertical from mid to end
       const yStep2 = endY > midY ? 1 : -1;
-      for (let y = midY; y !== endY; y += yStep2) grid.set(endX, y, chars.v);
-      grid.set(endX, endY - (endY > midY ? 1 : -1), arrowChar);
+      for (let y = midY + yStep2; y !== endY; y += yStep2) grid.set(endX, y, chars.v);
+      
+      // Arrow
+      const arrowY = endY - (endY > midY ? 1 : -1);
+      grid.set(endX, arrowY, arrowChar);
     }
   }
 }

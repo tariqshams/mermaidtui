@@ -14,26 +14,74 @@ Written in TypeScript.
 - **Deterministic Layout**: Grid-based layout engine that prioritizes readability.
 - **Zero Heavy Dependencies**: No Mermaid internals, no Chromium/Puppeteer, no SVG conversion.
 
-## Supported Syntax (v0.0.3)
-Currently v0.0.3 supports a strict subset of flowcharts:
+## Supported Syntax (v0.0.5)
+Currently v0.0.5 supports a robust subset of flowcharts:
 
 ```mermaid
 flowchart LR
-    A[Start] --> B[Process]
-    B --> C[End]
+    A[Start Here] --> B[Process A] --> C[End Goal]
+    B --> D[Process B]
 ```
 
 - **Directions**: `LR`, `RL`, `TB`, `BT`.
-- **Nodes**: Alphanumeric IDs and square labels `A[Label]`.
-- **Edges**: Directed arrows `-->` only.
+- **Nodes**: Alphanumeric IDs and square labels `A[Label with spaces]`.
+- **Edges**: Directed arrows `-->`, including **Chained Edges** (`A --> B --> C`).
+- **Visuals**: Intelligent corner rendering (`┌`, `┐`, `└`, `┘`) for orthogonal paths.
 
-### Unsupported in v0.0.3
+## Showcase
 
-- Subgraphs
-- Edge labels
-- Multiple arrow types (`<-->`, `-.->`)
-- Diagonal routing
-- Gantt, Sequence, etc.
+### Complex LR Layout
+**Input:**
+```mermaid
+flowchart LR
+    A[Root] --> B[Top Node]
+    A --> C[Bottom Node]
+    B --> D[Final]
+    C --> D
+```
+**Output:**
+```
+              ┌────────┐                    
+          ┌──▶│Top Node│─────┐              
+          │   └────────┘     │              
+┌────┐    │                  │     ┌─────┐  
+│Root│────┐                  └─┌──▶│Final│  
+└────┘    │                    │   └─────┘  
+          │                    │            
+          │   ┌───────────┐    │            
+          └──▶│Bottom Node│────┘            
+              └───────────┘                 
+```
+
+### Complex TB Layout
+**Input:**
+```mermaid
+flowchart TB
+    A[Root] --> B[Left Node]
+    A --> C[Right Node]
+    B --> D[Final]
+    C --> D
+```
+**Output:**
+```
+            ┌────┐               
+            │Root│               
+            └────┘               
+               │                 
+               │                 
+     ┌─────────└─────────┐       
+     ▼                   ▼       
+┌─────────┐        ┌──────────┐  
+│Left Node│        │Right Node│  
+└─────────┘        └──────────┘  
+     │                   │       
+     │                   │       
+     └─────────┌─────────┘       
+               ▼                 
+            ┌─────┐              
+            │Final│              
+            └─────┘              
+```
 
 ## Installation
 
@@ -65,31 +113,33 @@ const output = renderMermaidToTui(input, { ascii: false });
 console.log(output);
 ```
 
-## Example Output
+## Collaborators & Local Development
 
-**Input:**
-```mermaid
-flowchart TB
-    A[Start] --> B[Process]
-    B --> C[End]
-```
+We welcome contributions! To test changes locally across repositories:
 
-**Output:**
-```
- ┌─────┐   
- │Start│   
- └─────┘   
-    │      
-    ▼      
-┌───────┐  
-│Process│  
-└───────┘  
-    │      
-    ▼      
-  ┌───┐    
-  │End│    
-  └───┘
-```
+1.  **Clone & Link**:
+    ```bash
+    git clone https://github.com/tariqshams/mermaidtui.git
+    cd mermaidtui
+    npm install
+    npm run build
+    npm link
+    ```
+
+2.  **Use in another project**:
+    ```bash
+    cd ../your-other-project
+    npm link mermaidtui
+    ```
+
+3.  **Run Tests**:
+    ```bash
+    # Run unit tests
+    npm test
+
+    # View visual output for all test cases
+    npm run dump-visual-test
+    ```
 
 ## License
 

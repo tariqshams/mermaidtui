@@ -2,8 +2,8 @@ import { Graph, Node, NodeId, Direction } from "../types.js";
 
 const MIN_NODE_WIDTH = 5;
 const NODE_HEIGHT = 3;
-const HORIZONTAL_GAP = 4;
-const VERTICAL_GAP = 2;
+const HORIZONTAL_GAP = 8;
+const VERTICAL_GAP = 4;
 
 export function computeLayout(graph: Graph) {
   // 1. Compute node sizes
