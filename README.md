@@ -115,7 +115,7 @@ console.log(output);
 
 ## Collaborators & Local Development
 
-We welcome contributions! To test changes locally across repositories:
+I welcome contributions! To test changes locally across repositories:
 
 1.  **Clone & Link**:
     ```bash
